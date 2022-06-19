@@ -1,0 +1,29 @@
+@import "./colors";
+@import "./mixins/padding";
+@import "./mixins/margin";
+
+
+$space: .25rem;
+$line-height: 1.43;
+
+$font-size-xsmall: 75%; // 12px
+$font-size-small: 87.5%; // 14px
+$font-size-base: 100%; // 16px
+$font-size-large: 112.5%; //18px
+$font-size-xlarge: 125%; // 20px
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+$font-weights: (
+    light: $font-weight-light,
+    regular: $font-weight-regular,
+    medium: $font-weight-medium,
+    bold: $font-weight-bold
+);
+
+$border-radius: 4px;
+$border-color: $violet-3;
+$header-dark: $violet-1;

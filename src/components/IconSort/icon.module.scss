@@ -1,0 +1,11 @@
+@import '../../scss/config';
+
+
+.icon {
+    color: $gray-7;
+    cursor: pointer;
+
+    &.active {
+        color: $yellow-7;
+    }
+}

@@ -1,0 +1,56 @@
+@import '../../scss/config';
+
+
+.inherit {
+    color: inherit;
+    font-size: inherit;
+    fill: currentColor;
+    width: 1.2em;
+    height: 1.2em;
+    display: inline-block;
+    box-sizing: content-box;
+    // TODO проверить в Button и Input
+    vertical-align: middle;
+
+    &.small {
+        width: 0.8em;
+        height: 0.8em;
+    }
+
+    &.medium {
+        width: 1em;
+        height: 1em;
+    }
+
+    &.default {
+
+    }
+
+    &.large {
+        width: 1.4em;
+        height: 1.4em;
+    }
+
+    &.disabled {
+        color: $gray-5;
+        cursor: not-allowed;
+    }
+
+    .badge {
+        color: $yellow-6;
+        stroke: $white;
+    }
+
+    &.action {
+        @include padding(2, 2);
+
+        &:not(.disabled) {
+            cursor: pointer;
+            border-radius: $border-radius;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.03);
+            }
+        }
+    }
+}

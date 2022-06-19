@@ -1,0 +1,129 @@
+@import '../../scss/config';
+
+
+@keyframes loader {
+    0% {
+        transform: rotate(45deg)
+    }
+    50% {
+        transform: rotate(-135deg)
+    }
+    100% {
+        transform: rotate(-225deg)
+    }
+}
+
+@keyframes span-1 {
+    0% {
+        transform: translate(0);
+    }
+    50% {
+        transform: translate(-0.8em, 0);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes span-2 {
+    0% {
+        transform: translate(0);
+    }
+    50% {
+        transform: translate(0.8em, 0);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes span-3 {
+    0% {
+        transform: translate(0);
+    }
+    50% {
+        transform: translate(0, -0.8em);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes span-4 {
+    0% {
+        transform: translate(0);
+    }
+    50% {
+        transform: translate(0, 0.8em);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+.wrapper {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 150ms ease 0ms;
+    opacity: 0;
+
+    &:not(.inline) {
+        background-color: $violet-50;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 9;
+    }
+
+    &.inline {
+        padding: 2rem 0;
+    }
+
+    .bubbles {
+        position: relative;
+        width: 0.6em;
+        height: 0.6em;
+        animation: loader 2s infinite ease-in-out;
+
+        %bubble {
+            position: absolute;
+            border-radius: 50%;
+            width: 0.6em;
+            height: 0.6em;
+            display: block;
+        }
+
+        .bubbles--blue {
+            @extend %bubble;
+            background-color: $blue-5;
+            animation: span-1 2s ease-in-out infinite;
+        }
+
+        .bubbles--red {
+            @extend %bubble;
+            background-color: $magenta-5;
+            animation: span-2 2s ease-in-out infinite;
+        }
+
+        .bubbles--violet {
+            @extend %bubble;
+            background-color: $violet-5;
+            animation: span-3 2s ease-in-out infinite;
+        }
+
+        .bubbles--yellow {
+            @extend %bubble;
+            background-color: $yellow-5;
+            animation: span-4 2s ease-in-out infinite;
+        }
+    }
+
+    .title {
+        color: $gray-9;
+    }
+}

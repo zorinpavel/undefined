@@ -1,0 +1,34 @@
+@mixin margin($top: null, $right: null, $bottom: null, $left: null) {
+    @if($top and $right and $bottom == null) {
+        margin: ($top * $space) ($right * $space);
+    } @else {
+        @if($top) {
+            margin-top: ($top * $space);
+        }
+        @if($right) {
+            margin-right: ($right * $space);
+        }
+        @if($bottom) {
+            margin-bottom: ($bottom * $space);
+        }
+        @if($left) {
+            margin-left: ($left * $space);
+        }
+    }
+}
+
+@mixin marginTop($margin) {
+    @include margin($margin, null, null, null);
+}
+
+@mixin marginRight($margin) {
+    @include margin(null, $margin, null, null);
+}
+
+@mixin marginBottom($margin) {
+    @include margin(null, null, $margin, null);
+}
+
+@mixin marginLeft($margin) {
+    @include margin(null, null, null, $margin);
+}

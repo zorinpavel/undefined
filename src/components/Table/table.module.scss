@@ -1,0 +1,383 @@
+@import '../../scss/config';
+
+
+.wrapper {
+    margin: 1rem auto;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+}
+
+@mixin bgCellColor($bgColor) {
+    border-left: 1px solid $violet-1;
+    border-right: 1px solid $violet-1;
+    background-color: $bgColor;
+}
+
+@mixin lineSizer($borderType: solid) {
+    .topLine {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        border-top: 1px $borderType $yellow-5;
+        cursor: move;
+    }
+    .bottomLine {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        border-bottom: 1px $borderType $yellow-5;
+        cursor: move;
+    }
+    .leftLine {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        border-left: 1px $borderType $yellow-5;
+        cursor: move;
+    }
+    .rightLine {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 5px;
+        border-right: 1px $borderType $yellow-5;
+        cursor: move;
+    }
+}
+
+.table {
+    font-size: inherit;
+    display: flex;
+    flex-direction: column;
+
+    .hat {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #FFFFFF;
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+        border-bottom: 1px solid $border-color;
+        z-index: 1;
+        @include padding(3, 6);
+
+        &.sticky {
+            position: sticky;
+            top: 0;
+        }
+    }
+
+    .row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        background-color: $white;
+        border-bottom: 1px solid $border-color;
+        position: relative;
+
+        &:last-child {
+            border-bottom: 0 none;
+        }
+
+        &:first-child {
+            border-top-left-radius: $border-radius;
+            border-top-right-radius: $border-radius;
+        }
+
+        &:last-child {
+            border-bottom-left-radius: $border-radius;
+            border-bottom-right-radius: $border-radius;
+        }
+
+        &:hover {
+            background: $yellow-1;
+        }
+
+        &.disabled {
+            //pointer-events: none;
+            opacity: 0.5;
+        }
+
+        &.valign-center {
+            align-items: center;
+        }
+
+        &.valign-top {
+            align-items: flex-start;
+        }
+
+        &.align-left {
+            .td {
+                text-align: left;
+            }
+        }
+
+        &.align-center {
+            .td {
+                text-align: center;
+            }
+        }
+
+        &.align-right {
+            .td {
+                text-align: right;
+            }
+        }
+
+        &.sticky {
+            position: sticky;
+            top: 0;
+        }
+
+        .td {
+            @include padding(3, 6);
+            position: relative;
+
+            &.nowrap {
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+
+            &.align-left {
+                text-align: left;
+            }
+
+            &.align-center {
+                text-align: center;
+            }
+
+            &.align-right {
+                text-align: right;
+            }
+
+            &.colspan-auto {
+                width: auto;
+                flex-shrink: 0;
+                flex-basis: auto;
+            }
+
+            &.grow {
+                flex-grow: 1;
+            }
+
+            &.selected {
+                background-color: $yellow-2;
+                margin-top: -1px;
+                @include lineSizer();
+            }
+
+            &.highlighting {
+                @include bgCellColor($yellow-1);
+            }
+
+            &.spread {
+                background-color: $yellow-2;
+                margin-top: -1px;
+                @include lineSizer();
+            }
+
+            &.drag {
+                background-color: $yellow-2;
+                margin-top: -1px;
+                @include lineSizer();
+            }
+
+            &.activeCellHeader {
+                @include bgCellColor($violet-1);
+            }
+
+            .agFillHandle {
+                cursor: move;
+                background: red;
+                position: absolute;
+                width: 0.375rem;
+                height: 0.375rem;
+                bottom: -1px;
+                right: 0;
+                z-index: 9;
+            }
+        }
+    }
+
+    .th {
+        background-color: $header-dark;
+
+        &:hover {
+            background-color: $header-dark;
+        }
+
+        &:first-child {
+            border: 0 none;
+        }
+
+        &.valign-center {
+            align-items: center;
+        }
+
+        &.valign-top {
+            align-items: flex-start;
+        }
+
+        &.align-left {
+            .td {
+                span {
+                    flex-grow: 1;
+                    text-align: left;
+                }
+            }
+        }
+
+        &.align-center {
+            .td {
+                span {
+                    flex-grow: 1;
+                    text-align: center;
+                }
+            }
+        }
+
+        &.align-right {
+            .td {
+                span {
+                    flex-grow: 1;
+                    text-align: right;
+                }
+            }
+        }
+
+        .td {
+            font-weight: 500;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+
+            // IconSort
+            svg {
+                flex-shrink: 0;
+            }
+
+            &.align-left {
+                text-align: left;
+
+                span {
+                    flex-grow: 1;
+                }
+            }
+
+            &.align-center {
+                text-align: center;
+
+                span {
+                    flex-grow: 1;
+                }
+            }
+
+            &.align-right {
+                text-align: right;
+
+                span {
+                    flex-grow: 1;
+                }
+            }
+        }
+
+        &.wrap {
+            .td {
+                white-space: break-spaces;
+            }
+        }
+    }
+
+    .th:first-child + .row {
+        border-top-left-radius: $border-radius;
+        border-top-right-radius: $border-radius;
+    }
+
+    &.nowrap {
+        .td:not(.wrap) {
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    }
+
+    &.valign-center {
+        .row {
+            align-items: center;
+        }
+    }
+
+    &.valign-top {
+        .row {
+            align-items: flex-start;
+        }
+    }
+
+    &.align-left {
+        .row {
+            @extend .align-left;
+        }
+    }
+
+    &.align-center {
+        .row {
+            @extend .align-center;
+        }
+    }
+
+    &.align-right {
+        .row {
+            @extend .align-right;
+        }
+    }
+
+    &.font-small {
+        font-size: $font-size-small;
+    }
+
+    &.font-large {
+        font-size: $font-size-large;
+    }
+
+    &.view-compact {
+        .hat {
+            @include padding(3, 3);
+        }
+        .td {
+            @include padding(2, 3);
+        }
+    }
+}
+
+.noHover:hover {
+  background: none;
+}
+
+@mixin cell() {
+    @for $cell from 2 through 30 {
+        .cell#{$cell} {
+            .td {
+                $value: #{(100 / $cell) * 1%};
+                flex-basis: $value;
+                width: $value;
+
+                @for $span from 2 through 20 {
+                    &.colspan-#{$span} {
+                        flex-basis: #{(100 / $cell) * 1% * $span};
+                        width: #{(100 / $cell) * 1% * $span};
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include cell;
